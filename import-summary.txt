@@ -1,0 +1,51 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .factorypath
+* .gitignore
+* misc/
+* misc/spec.odg
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* libs/d2xx.jar => app/libs/d2xx.jar
+* libs/physicaloidlibrary.jar => app/libs/physicaloidlibrary.jar
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+* src/net/cattaka/libgeppa/IActiveGeppaService.aidl => app/src/main/aidl/net/cattaka/libgeppa/IActiveGeppaService.aidl
+* src/net/cattaka/libgeppa/IActiveGeppaServiceListener.aidl => app/src/main/aidl/net/cattaka/libgeppa/IActiveGeppaServiceListener.aidl
+* src/net/cattaka/libgeppa/IPassiveGeppaService.aidl => app/src/main/aidl/net/cattaka/libgeppa/IPassiveGeppaService.aidl
+* src/net/cattaka/libgeppa/IPassiveGeppaServiceListener.aidl => app/src/main/aidl/net/cattaka/libgeppa/IPassiveGeppaServiceListener.aidl
+* src/net/cattaka/libgeppa/data/ConnectionCode.aidl => app/src/main/aidl/net/cattaka/libgeppa/data/ConnectionCode.aidl
+* src/net/cattaka/libgeppa/data/ConnectionState.aidl => app/src/main/aidl/net/cattaka/libgeppa/data/ConnectionState.aidl
+* src/net/cattaka/libgeppa/data/DeviceEventCode.aidl => app/src/main/aidl/net/cattaka/libgeppa/data/DeviceEventCode.aidl
+* src/net/cattaka/libgeppa/data/DeviceInfo.aidl => app/src/main/aidl/net/cattaka/libgeppa/data/DeviceInfo.aidl
+* src/net/cattaka/libgeppa/data/DeviceState.aidl => app/src/main/aidl/net/cattaka/libgeppa/data/DeviceState.aidl
+* src/net/cattaka/libgeppa/data/PacketWrapper.aidl => app/src/main/aidl/net/cattaka/libgeppa/data/PacketWrapper.aidl
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
