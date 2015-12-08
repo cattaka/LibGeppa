@@ -1,37 +1,90 @@
+group = 'net.cattaka'
+version = '0.0.1'
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 14
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "net.cattaka.libgeppa"
         minSdkVersion 14
-        targetSdkVersion 15
+        targetSdkVersion 14
     }
 
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
 }
 
-dependencies {
-    compile files('libs/d2xx.jar')
-    compile files('libs/physicaloidlibrary.jar')
+def projectId = "libgeppa"
+def projectName = 'LibGeppa'
+def siteUrl = 'https://github.com/cattaka/LibGeppa'
+def gitUrl = 'https://github.com/cattaka/LibGeppa.git'
+def issueUrl = 'https://github.com/cattaka/LibGeppa/issues'
+def projectDesc = 'Library for communication between Android and Arduino'
+
+bintray {
+    user = bintray_user
+    key = bintray_apikey
+
+    configurations = ['archives'] //When uploading configuration files
+
+    pkg {
+        repo = 'maven'
+        name = projectId
+        licenses = ['Apache-2.0']
+        desc = projectDesc
+        websiteUrl = siteUrl
+        issueTrackerUrl = issueUrl
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['aar', 'android']
+        publicDownloadNumbers = true
+    }
 }
 
-def repo = new File(rootDir, "repository")
-apply plugin: 'maven'
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository url: "file://${repo.absolutePath}"
-            pom.version = '1.0.0'
-            pom.groupId = 'net.cattaka'
-            pom.artifactId = 'libgeppa'
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name projectName
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'cattaka'
+                        name 'Takao Sumitomo'
+                        email 'cattaka@mail.cattaka.net'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
         }
     }
+}
+
+repositories {
+    maven {
+        url "http://dl.bintray.com/cattaka/maven"
+    }
+}
+
+dependencies {
+    compile 'net.cattaka:physicaloid:1.0.1'
 }
