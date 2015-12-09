@@ -4,6 +4,8 @@ This provides Android Service.
 Once service is started, it manages connected/disconnected events.
 To send/receive message from activity, you can bind the service and set listeneres.
 
+This library contains 3 services. ActiveGeppaService, AdkPassiveGeppaService and BluetoothPassiveGeppaService.
+
 ### ActiveGeppaService
 This provides manual connect functions.
 Supports: USB-Host-API, Bluetooth, TCP/IP
@@ -121,4 +123,18 @@ IPassiveGeppaServiceListener listener = new IPassiveGeppaServiceListener.Stub() 
     }
 }
 mService.registerGeppaServiceListener(listener);
+```
+
+
+### Getting Started
+Add following lines to build.gradle
+```grooby
+repositories {
+    maven {
+        url "http://dl.bintray.com/cattaka/maven"
+    }
+}
+dependencies {
+    compile('net.cattaka:libgeppa:1.0.0')
+}
 ```
