@@ -55,6 +55,15 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
     }
 }
 ```
+Note: Don't forget to create app/src/main/res/xml/accessory_filter.xml
+
+
+#### Sending packet
+```java
+MyPacket packet = new MyPacket();
+/* Set packet data here */
+mService.sendPacket(new PacketWrapper(packet));
+```
 #### Receiving packet
 ```java
 IPassiveGeppaServiceListener listener = new IPassiveGeppaServiceListener.Stub() {
@@ -68,14 +77,6 @@ IPassiveGeppaServiceListener listener = new IPassiveGeppaServiceListener.Stub() 
 mService.registerGeppaServiceListener(listener);
 ```
 
-
-#### Sending packet
-```java
-MyPacket packet = new MyPacket();
-/* Set packet data here */
-mService.sendPacket(new PacketWrapper(packet));
-```
-
 ### BluetoothPassiveGeppaService
 This provides auto connect functions for Bluetooth.
 
@@ -85,7 +86,7 @@ Supports: Bluetooth(Auto connect)
 ```java
 public class GeppaServiceEx extends GeppaService<MyPacket> {
     public GeppaServiceEx() {
-        super("GeppaSample", new MyPacketFactory());
+        super("Put bluetooth device name that connect with", new MyPacketFactory());
     }
 }
 ```
