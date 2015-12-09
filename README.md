@@ -41,6 +41,14 @@ IActiveGeppaServiceListener listener = new IActiveGeppaServiceListener.Stub() {
 }
 mService.registerServiceListener(listener);
 ```
+Note:If you use USB-Host-API, create app/src/main/res/xml/usb_device_filter.xml with your device's vendor-id and product-id.
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <usb-device vendor-id="1027" product-id="24577" />
+</resources>
+```
+
 
 ### AdkPassiveGeppaService
 This provides auto connect functions for ADK.
@@ -56,7 +64,12 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
 }
 ```
 Note: Don't forget to create app/src/main/res/xml/accessory_filter.xml
-
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <usb-accessory manufacturer="Your manufacturer" model="Your device model" version="1.0" />
+</resources>
+```
 
 #### Sending packet
 ```java
