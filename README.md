@@ -1,8 +1,14 @@
+## LibGeppa
+LibGeppa is a library to manage connection with HW, such as ADK, USB-Host-API, Bluetooth.
+This provides Android Service.
+Once service is started, it manages connected/disconnected events.
+To send/receive message from activity, you can bind the service and set listeneres.
 
 ### ActiveGeppaService
-Provide manual connect functions.
+This provides manual connect functions.
 Supports: USB-Host-API, Bluetooth, TCP/IP
 
+#### Creating service
 ```java
 public class GeppaServiceEx extends ActiveGeppaService<MyPacket> {
     public GeppaServiceEx() {
@@ -15,24 +21,40 @@ public class GeppaServiceEx extends ActiveGeppaService<MyPacket> {
     }
 }
 ```
+#### Sending packet
+```java
+    MyPacket packet = new MyPacket();
+    /* Set packet data */
+    mService.sendPacket(new PacketWrapper(packet));
+```
 
-### PassiveGeppaService
-#### AdkPassiveGeppaService
-Provide auto connect functions for ADK.
+### AdkPassiveGeppaService
+This provides auto connect functions for ADK.
 
 Supports: ADK
+
+#### Creating service
 ```java
 public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
     public GeppaServiceEx() {
         super(new MyPacketFactory());
     }
 }
+
+#### Sending packet
+```java
+    MyPacket packet = new MyPacket();
+    /* Set packet data */
+    mService.sendPacket(new PacketWrapper(packet));
+```
 ```
 
-#### BluetoothPassiveGeppaService
-Provide auto connect functions for Bluetooth.
+### BluetoothPassiveGeppaService
+This provides auto connect functions for Bluetooth.
 
 Supports: Bluetooth(Auto connect)
+
+#### Creating service
 ```java
 public class GeppaServiceEx extends GeppaService<MyPacket> {
     public GeppaServiceEx() {
@@ -40,3 +62,11 @@ public class GeppaServiceEx extends GeppaService<MyPacket> {
     }
 }
 ```
+
+#### Sending packet
+```java
+    MyPacket packet = new MyPacket();
+    /* Set packet data */
+    mService.sendPacket(new PacketWrapper(packet));
+```
+
