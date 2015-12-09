@@ -23,9 +23,23 @@ public class GeppaServiceEx extends ActiveGeppaService<MyPacket> {
 ```
 #### Sending packet
 ```java
-    MyPacket packet = new MyPacket();
-    /* Set packet data */
-    mService.sendPacket(new PacketWrapper(packet));
+MyPacket packet = new MyPacket();
+/* Set packet data here */
+mService.sendPacket(new PacketWrapper(packet));
+```
+
+#### Receiving packet
+```java
+IActiveGeppaServiceListener listener = new IActiveGeppaServiceListener.Stub() {
+    public void onDeviceStateChanged(in DeviceState state, in DeviceEventCode code, in DeviceInfo deviceInfo) {
+        // Handle connection event here
+    }
+    
+    public void onReceivePacket(in PacketWrapper packet) {
+        // Handle received packet here
+    }
+}
+mService.registerServiceListener(listener);
 ```
 
 ### AdkPassiveGeppaService
@@ -40,13 +54,26 @@ public class GeppaServiceEx extends AdkPassiveGeppaService<MyPacket> {
         super(new MyPacketFactory());
     }
 }
+```
+#### Receiving packet
+```java
+IPassiveGeppaServiceListener listener = new IPassiveGeppaServiceListener.Stub() {
+    public void onConnectionStateChanged(in ConnectionState state) {
+        // Handle connection event here
+    }
+    public void onReceivePacket(in PacketWrapper packet) {
+        // Handle received packet here
+    }
+}
+mService.registerGeppaServiceListener(listener);
+```
+
 
 #### Sending packet
 ```java
-    MyPacket packet = new MyPacket();
-    /* Set packet data */
-    mService.sendPacket(new PacketWrapper(packet));
-```
+MyPacket packet = new MyPacket();
+/* Set packet data here */
+mService.sendPacket(new PacketWrapper(packet));
 ```
 
 ### BluetoothPassiveGeppaService
@@ -65,8 +92,19 @@ public class GeppaServiceEx extends GeppaService<MyPacket> {
 
 #### Sending packet
 ```java
-    MyPacket packet = new MyPacket();
-    /* Set packet data */
-    mService.sendPacket(new PacketWrapper(packet));
+MyPacket packet = new MyPacket();
+/* Set packet data here */
+mService.sendPacket(new PacketWrapper(packet));
 ```
-
+#### Receiving packet
+```java
+IPassiveGeppaServiceListener listener = new IPassiveGeppaServiceListener.Stub() {
+    public void onConnectionStateChanged(in ConnectionState state) {
+        // Handle connection event here
+    }
+    public void onReceivePacket(in PacketWrapper packet) {
+        // Handle received packet here
+    }
+}
+mService.registerGeppaServiceListener(listener);
+```
