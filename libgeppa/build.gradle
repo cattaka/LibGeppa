@@ -1,5 +1,5 @@
 group = 'net.cattaka'
-version = '1.0.0'
+version = '1.0.1'
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
@@ -86,5 +86,5 @@ repositories {
 }
 
 dependencies {
-    compile 'net.cattaka:physicaloid:1.0.1'
+    compile 'net.cattaka:physicaloid:1.0.2'
 }
