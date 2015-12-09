@@ -23,6 +23,13 @@ public class GeppaServiceEx extends ActiveGeppaService<MyPacket> {
     }
 }
 ```
+#### Connecting HW
+```java
+String devicekey = "0403:6001";
+DeviceInfo deviceInfo = DeviceInfo.createUsb(devicekey, false);
+mService.connect(deviceInfo);
+```
+
 #### Sending packet
 ```java
 MyPacket packet = new MyPacket();
